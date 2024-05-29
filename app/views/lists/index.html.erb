@@ -1,0 +1,28 @@
+<div style="background-color: #FCD129; min-height: 100vh">
+  <div class="container">
+    <div class="d-flex justify-content-center pt-5">
+      <h1><strong>Here are your lists</strong></h1>
+    </div>
+
+    <div class="row g-3">
+      <% @lists.each do |list| %>
+        <div class="col-md-4">
+          <div class="card text-bg-dark mt-5 mb-2" style="width: 18rem">
+            <%= cl_image_tag list.photo.key, class: "card-img-top" if list.photo.attached? %>
+            <div class="card-body">
+              <h5 class="card-title">
+                <%= link_to list_path(list), class: "card-title" do %>
+                  <strong><%= list.name %></strong>
+                <% end %>
+              </h5>
+            </div>
+
+            <div class="card-body">
+              <%= link_to "> add movie to this list", new_list_bookmark_path(list), class: "link-secondary link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

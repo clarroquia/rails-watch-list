@@ -1,0 +1,38 @@
+<div style="background-color: #FCD129">
+  <div class="container ">
+    <div class= "d-flex justify-content-center align-items-center"style="background-color: #FCD129; min-height: 150px">
+      <h1 ><strong>" <%= @list.name %> " </strong></h1>
+    </div>
+
+    <div class="card-body">
+      <%= link_to "> add movie to this list", new_list_bookmark_path(@list), class: "link-body-emphasis link-opacity-100 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" %>
+    </div>
+
+
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+      <% @list.bookmarks.each do |bookmark| %>
+      <div class="col mt-5 mb-5">
+        <div class="card h-100">
+
+            <%= image_tag bookmark.movie.poster_url, alt: "Movie poster", class: "img-fluid" %>
+
+            <div class="card-body">
+              <h5 class="card-title"><strong><%= bookmark.movie.title %> - </strong> <small>rating:  <%= bookmark.movie.rating %> <i class="fa-sharp fa-solid fa-star" style="color: #FFD43B;"></small></i>   </h5>
+              <p class="card-text"><strong>Film summary: </strong><%= bookmark.movie.overview %></p>
+
+            </div>
+
+            <div class="card-footer bg-transparent">
+              <h5 class="card-title"><strong><i class="fa-solid fa-quote-left" style="color: #2B3035;"></i> <%= bookmark.comment %></strong></h5>
+            </div>
+
+            <div class="card-footer bg-dark">
+              <%= link_to "remove this movie", bookmark_path(bookmark), data: {turbo_method: :delete, turbo_confirm: "are you sure?"}, class: "text-white" %>
+            </div>
+
+          </div>
+      </div>
+          <% end %>
+    </div>
+  </div>
+</div>
